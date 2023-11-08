@@ -1,0 +1,5 @@
+Quite simple, right? The ocr_core function takes a path to your image file
+and returns its text components. According to documentation,
+image_to_string function uses English language as default recognition, but
+
+we'll talk about specific languages later.
