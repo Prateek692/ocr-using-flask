@@ -25,6 +25,11 @@ def txt(str):
 def home_page():  
     return render_template('new_page.html')
 
+@app.route('/home')
+def home():
+    return render_template('new_page.html')
+
+
 # route and function to handle the upload page
 @app.route('/', methods=['GET', 'POST'])
 def upload_page():  
@@ -44,9 +49,9 @@ def upload_page():
             # call the OCR function on it
             extracted_text = ocr_core(file)
             if output_format=='JSON':
-                return render_template('new_page.html', msg='JSON')
+                return render_template('output.html',msg=extracted_text)
             elif output_format=='Plaintext':
-                return render_template('new_page.html', msg='Text File')
+                return render_template('output.html',msg=extracted_text)
             else:
                 txt(extracted_text)
                 path = 'parsed_text.txt'
