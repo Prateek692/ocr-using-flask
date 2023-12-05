@@ -3,8 +3,6 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 # import our OCR function
 from ocr_core import ocr_core
 
-# define a folder to store and later serve the images
-UPLOAD_FOLDER = '/static/uploads/'
 
 # allow files of a specific type
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -48,9 +46,7 @@ def upload_page():
                 return render_template('new_page.html', msg='Choose valid output format!')
             # call the OCR function on it
             extracted_text = ocr_core(file)
-            if output_format=='JSON':
-                return render_template('output.html',msg=extracted_text)
-            elif output_format=='Plaintext':
+            if output_format=='plaintext':
                 return render_template('output.html',msg=extracted_text)
             else:
                 txt(extracted_text)
